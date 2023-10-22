@@ -8,6 +8,8 @@ export interface ValueInputs {
   value: string;
 }
 
+export type AddErrorInput = (name, msg) => void
+
 export interface Form {
   scheduleDay: string
 }

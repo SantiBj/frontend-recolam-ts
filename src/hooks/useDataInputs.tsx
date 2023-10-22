@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { InitialDataForm, ValueInputs } from "../CreateTrip/models/ScheduleDay/types"
+import { AddErrorInput, InitialDataForm, ValueInputs } from "../CreateTrip/models/ScheduleDay/types"
 
 
 export function useDataInputs<TInp, TErr>(dataInitial: InitialDataForm<TInp, TErr>) {
@@ -8,11 +8,14 @@ export function useDataInputs<TInp, TErr>(dataInitial: InitialDataForm<TInp, TEr
     function addValueInput({ name, value }: ValueInputs) {
         setData({
             ...data,
-            [name]: value
+            inputs: {
+                ...data.inputs,
+                [name]: value
+            }
         })
     }
 
-    function addError(name: string, msg: string) {
+    const addErrorInput:AddErrorInput = (name, msg)=> {
         setData({
             ...data,
             errors: {
@@ -25,7 +28,7 @@ export function useDataInputs<TInp, TErr>(dataInitial: InitialDataForm<TInp, TEr
     return {
         data,
         addValueInput,
-        addError
+        addErrorInput
     }
 
 
