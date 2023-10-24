@@ -1,6 +1,6 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useRef, useState } from "react";
 import { URL_API, TOKEN } from "../../../Config"
-import { AddValueCont, ChangeScheduleDay, ClearValueKey, DataState } from "../models/types.d.all";
+import { AddUrlDirectory, AddValueCont, ChangeScheduleDay, ClearValueKey, DataState, UrlsTrip } from "../models/types.d.all";
 import { DataContext } from "../models/types.d.all"
 import { AddErrorInput } from "../models/ScheduleDay/types.d";
 import { translateM } from "../../service/translateM";
@@ -14,12 +14,19 @@ const initialData: DataState = {
   address: ""
 }
 
+const urlsTripInitial: UrlsTrip = {
+  scheduleDay: "/create-trip/scheduleDay",
+  customer: "/create-trip/customer",
+  truck: "/create-trip/truck",
+}
+
 interface Props {
   children: ReactNode
 }
 
 export function CreateTrip({ children }: Props) {
   const [state, setState] = useState<DataState>(initialData)
+  const urlTrips = useRef(urlsTripInitial)
 
   const addValueCont: AddValueCont = (key, value) => {
     setState({
@@ -72,19 +79,31 @@ export function CreateTrip({ children }: Props) {
       if (data.avaliable) {
         addErrorInput("scheduleDay", null)
       }
-    } catch (e: { state: string, message: string }) {
-      const messageEs = await translateM(e.message)
-      addErrorInput("scheduleDay", messageEs)
-      addValueCont("scheduleDay", "")
+    } catch (e: any) {
+      if ("message" in e) {
+        const messageEs = await translateM(e.message)
+        addErrorInput("scheduleDay", messageEs)
+        addValueCont("scheduleDay", "")
+      } else {
+        addErrorInput("scheduleDay", "Error generico")
+      }
+    }
+  }
+
+  const addUrlDirectory: AddUrlDirectory = (key, value) => {
+    urlTrips.current = {
+      ...urlTrips.current,
+      [key]: value
     }
   }
 
   const value: DataContext = {
     state,
+    urlsTrip: urlTrips.current,
+    addUrlDirectory,
     addValueCont,
     changeScheduleDay,
     clearValueKey
   }
-
   return <createTrip.Provider value={value}>{children}</createTrip.Provider>;
 }

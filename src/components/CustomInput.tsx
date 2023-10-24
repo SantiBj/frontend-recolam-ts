@@ -1,12 +1,12 @@
 import { ChangeEvent } from "react"
 
 interface Props {
-    type: "text" | "number",
+    type: "text" | "date" | "number",
     placeholder: string,
     onChange: (target: ChangeEvent<HTMLInputElement>) => void,
     value: string,
     name: string,
-    error: string
+    error: string | null
 }
 
 export function CustomInput({

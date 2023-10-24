@@ -1,7 +1,7 @@
 interface Props {
     text: string,
-    color: "white" | "black" | null,
-    size: "lg" | "md" | "sm" | null
+    color?: "white" | "black" | null,
+    size?: "lg" | "md" | "sm" | null
 }
 
 export function TittleMajor({ text, color = "white", size = "lg" }: Props) {

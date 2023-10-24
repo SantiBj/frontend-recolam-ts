@@ -4,11 +4,12 @@ import { TittleMajor } from "../../components/TittleMajor"
 import { CustomInput } from "../../components/CustomInput"
 import { useDataInputs } from "../../hooks/useDataInputs"
 import { ErrForm, Form, InitialDataForm } from "../models/ScheduleDay/types"
-import { DataContext } from "../models/types.d.all"
+import { BtnContinue } from "../components/scheduleDay/BtnContinue"
+
 
 
 export function ScheduleDay() {
-    const { state, addValueCont, clearValueKey,changeScheduleDay } = useContext(createTrip)
+    const { state, changeScheduleDay,urlsTrip } = useContext(createTrip)
 
     const initialForm: InitialDataForm<Form, ErrForm> = {
         inputs: {
@@ -20,9 +21,9 @@ export function ScheduleDay() {
     }
     const { data, addValueInput, addErrorInput } = useDataInputs(initialForm)
 
-    function handlerChange(e:ChangeEvent<HTMLInputElement>):void {
-        const { name , value } = e.target
-
+    function handlerChange(e: ChangeEvent<HTMLInputElement>): void {
+        addValueInput(e.target)
+        changeScheduleDay(e.target.value, addErrorInput)
     }
 
     return (
@@ -30,16 +31,20 @@ export function ScheduleDay() {
             <TittleMajor text={"Crear Viaje"} color="black" size="sm" />
             <div>
                 <CustomInput
-
-
+                    type="date"
+                    placeholder="Fecha del viaje"
+                    onChange={handlerChange}
+                    value={data.inputs.scheduleDay}
+                    name="scheduleDay"
+                    error={data.errors.scheduleDay}
                 />
             </div>
             <div
-                className={`flex w-[70%] mx-auto justify-end ${(dataTrip.scheduleDay == "" || !dataTrip.scheduleDay) &&
+                className={`flex w-[70%] mx-auto justify-end ${(state.scheduleDay == "" || !state.scheduleDay) &&
                     "opacity-50 pointer-events-none"
                     }`}
             >
-                <BtnContinue to={urlsDataTripSelected.customer} />
+                <BtnContinue to={urlsTrip.customer} />
             </div>
         </div>
     )
