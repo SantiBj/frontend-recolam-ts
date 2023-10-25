@@ -4,7 +4,7 @@ export function useQueryParams() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    function addValueUrl(url:string, key:string, value:string) {
+    function addValueUrl(url:string, key:string, value:string|number) {
         navigate(`${url}/?${key}=${value}`)
     }
 

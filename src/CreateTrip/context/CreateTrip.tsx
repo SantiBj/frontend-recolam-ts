@@ -72,7 +72,7 @@ export function CreateTrip({ children }: Props) {
         }
       })
       if (!response.ok) {
-        const message: { message: string } = await response.json()
+        const message = await response.json()
         throw { status: response.status, message: message.message }
       }
       const data: { avaliable: boolean } = await response.json()
