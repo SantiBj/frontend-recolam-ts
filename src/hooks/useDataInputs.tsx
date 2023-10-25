@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { AddErrorInput, InitialDataForm, ValueInputs } from "../CreateTrip/models/ScheduleDay/types"
+import { AddErrorInput, AddValueInput, InitialDataForm, ValueInputs } from "../CreateTrip/models/ScheduleDay/types"
 
 
 export function useDataInputs<TInp, TErr>(dataInitial: InitialDataForm<TInp, TErr>) {
     const [data, setData] = useState<InitialDataForm<TInp, TErr>>(dataInitial)
 
-    function addValueInput({ name, value }: ValueInputs): void {
+    const addValueInput:AddValueInput = ({ name, value }) => {
         const template = {
             ...data,
             inputs: {
@@ -35,6 +35,5 @@ export function useDataInputs<TInp, TErr>(dataInitial: InitialDataForm<TInp, TEr
         addValueInput,
         addErrorInput
     }
-
 
 }

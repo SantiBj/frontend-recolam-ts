@@ -11,9 +11,14 @@ export interface Headers {
     }
 }
 
+export interface DataPagination {
+    next: string | null | undefined;
+    previous: string | null | undefined;
+}
+
 export interface ListPaginate<T> {
-    results : Array<T>,
     count: number;
     next: string | null;
     previous: string | null;
+    results : Array<T>,
 }

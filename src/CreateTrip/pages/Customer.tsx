@@ -3,6 +3,7 @@ import { Title } from "../../components/Title";
 import { TittleMajor } from "../../components/TittleMajor";
 import { BtnContinue } from "../components/scheduleDay/BtnContinue";
 import { createTrip } from "../context/CreateTrip";
+import { ContentCardsCust } from "../components/customer/ContentCardsCust";
 
 export function Customer() {
 

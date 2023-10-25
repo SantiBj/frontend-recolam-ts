@@ -1,12 +1,12 @@
-import { ChangeEvent, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useQueryParams } from "../../../hooks/useQueryParams";
-import { AddUrlDirectory } from "../../models/types.all";
-import { DataState } from "../../models/types.all";
-import { AddValueCont } from "../../models/types.all";
+import { AddUrlDirectory } from "../../models/types.d.all";
+import { DataState } from "../../models/types.d.all";
+import { AddValueCont } from "../../models/types.d.all";
 import { usePaginate } from "../../../hooks/usePaginate";
 import { useConsult } from "../../../hooks/useConsult";
 import { CardCustomer } from "./CardCustomer";
-import { AddCustomer,CustomerType } from "../../models/customer/types";
+import { AddCustomer, CustomerType } from "../../models/customer/types";
 import { ListPaginate } from "../../../Models";
 import { Pagination } from "../../../components/Pagination";
 
@@ -30,13 +30,13 @@ export function ContentCardsCust({ addValueCont, state, addUrlDirectory }: Props
     }, [])
 
     const { page, nextPage, prevPage } = usePaginate(initialPagination)
-    const { fecthingData, dataConsult, codeState, mssg, loading } = useConsult<_, ListPaginate<CustomerType>>(`customers/${state.scheduleDay}?page=${page}`)
+    const { fecthingData, dataConsult, codeState, mssg, loading } = useConsult<null, ListPaginate<CustomerType>>(`customers/${state.scheduleDay}?page=${page}`)
 
     useEffect(() => {
         fecthingData()
     }, [page])
 
-    const addCustomer:AddCustomer = (e)=>{
+    const addCustomer: AddCustomer = (e) => {
         const { name, value }: { name: string, value: string } = e.target
         addValueCont(name, value)
         addValueUrl("/create-trip/customer", "page", page)
@@ -56,7 +56,10 @@ export function ContentCardsCust({ addValueCont, state, addUrlDirectory }: Props
                 ))}
             </div>
             <Pagination
-                dataConsult={dataConsult}
+                dataConsult={{
+                    previous: dataConsult?.previous,
+                    next: dataConsult?.next
+                }}
                 page={page}
                 nextPage={nextPage}
                 prevPage={prevPage}

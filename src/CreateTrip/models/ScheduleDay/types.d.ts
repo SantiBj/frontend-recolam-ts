@@ -8,7 +8,8 @@ export interface ValueInputs {
   value: string;
 }
 
-export type AddErrorInput = (name, msg) => void
+export type AddValueInput = (data:ValueInputs)=>void
+export type AddErrorInput = (name:string, msg:string | null) => void
 
 export interface Form {
   scheduleDay: string

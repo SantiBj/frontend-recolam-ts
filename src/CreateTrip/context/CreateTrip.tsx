@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useRef, useState } from "react";
 import { URL_API, TOKEN } from "../../../Config"
-import { AddUrlDirectory, AddValueCont, ChangeScheduleDay, ClearValueKey, DataState, UrlsTrip } from "../models/types.d.all";
+import { AddUrlDirectory, AddValueCont, ChangeScheduleDay, DataState, ResetData, UrlsTrip } from "../models/types.d.all";
 import { DataContext } from "../models/types.d.all"
 import { AddErrorInput } from "../models/ScheduleDay/types.d";
 import { translateM } from "../../service/translateM";
@@ -35,11 +35,8 @@ export function CreateTrip({ children }: Props) {
     })
   }
 
-  const clearValueKey: ClearValueKey = (key) => {
-    setState({
-      ...state,
-      [key]: ""
-    })
+  const resetDataTrip: ResetData = () => {
+    setState(initialData)
   }
 
   const changeScheduleDay: ChangeScheduleDay = (value, addErrorInput) => {
@@ -97,13 +94,18 @@ export function CreateTrip({ children }: Props) {
     }
   }
 
+  const resetUrlDirectory:ResetData=()=>{
+    urlTrips.current = urlsTripInitial
+  }
+
   const value: DataContext = {
     state,
     urlsTrip: urlTrips.current,
     addUrlDirectory,
+    resetUrlDirectory,
     addValueCont,
     changeScheduleDay,
-    clearValueKey
+    resetDataTrip
   }
   return <createTrip.Provider value={value}>{children}</createTrip.Provider>;
 }
