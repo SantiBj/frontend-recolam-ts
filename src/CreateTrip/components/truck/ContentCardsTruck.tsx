@@ -10,7 +10,7 @@ import { Errors } from "../../../components/Errors";
 import { Pagination } from "../../../components/Pagination";
 import { ListPaginate } from "../../../Models";
 import { AddTruck, TruckType } from "../../models/truck/types";
-import { CardTruck } from "./CardTruck";
+import { CardTruck } from "../../../components/CardTruck";
 
 interface Props {
     addUrlDirectory: AddUrlDirectory;

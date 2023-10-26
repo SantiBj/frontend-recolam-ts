@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BiArrowToLeft } from "react-icons/bi"
+import { MdOutlineArrowBackIos } from "react-icons/md"
 
 interface Props {
     text: string,
@@ -16,7 +16,7 @@ export function Title({ text, to = false, color = "white", size = "lg" }: Props)
                     <div className="flex gap-[10px]">
                         <span>
                             {" "}
-                            <BiArrowToLeft size={25} />{" "}
+                            <MdOutlineArrowBackIos size={25} />{" "}
                         </span>{" "}
                         <p>Regresar</p>
                     </div>

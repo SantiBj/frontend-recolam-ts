@@ -6,16 +6,16 @@ import { Title } from "../../components/Title"
 import { BtnContinue } from "../components/scheduleDay/BtnContinue"
 import { ContentCardsTruck } from "../components/truck/ContentCardsTruck"
 
-export function Truck(){
+export function Truck() {
 
-    const { state,addValueCont,urlsTrip,addUrlDirectory } = useContext(createTrip)
+  const { state, addValueCont, urlsTrip, addUrlDirectory } = useContext(createTrip)
 
 
-    if(state.user === ""){
-        return <Navigate to={urlsTrip.customer}/>
-    }
-    return(
-        <div>
+  if (state.user === "") {
+    return <Navigate to={urlsTrip.customer} />
+  }
+  return (
+    <div>
       <div className="space-y-[30px]">
         <TittleMajor text={"Crear Viaje"} />
         <Title
@@ -36,5 +36,5 @@ export function Truck(){
         </div>
       </div>
     </div>
-    )
+  )
 }

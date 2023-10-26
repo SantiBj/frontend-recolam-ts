@@ -18,17 +18,19 @@ export function CustomInput({
     error
 }: Props) {
     return (
-        <div className="flex flex-col w-full">
-            <label>{placeholder} :</label>
-            <input
-                className="border-gray-300 border-[2px] p-[5px] rounded-lg placeholder:italic placeholder:text-slate-400"
-                type={type}
-                onChange={onChange}
-                placeholder={placeholder}
-                value={value}
-                name={name}
-            />
-            <div className="text-[14px] text-red-500">{error !== null && error}</div>
+        <div>
+            <div className="flex flex-col w-full">
+                <label>{placeholder} :</label>
+                <input
+                    className="border-gray-300 border-[2px] p-[5px] rounded-lg placeholder:italic placeholder:text-slate-400"
+                    type={type}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    value={value}
+                    name={name}
+                />
+            </div>
+            <div className="w-[290px] text-[14px] text-red-500">{error !== null && error}</div>
         </div>
     )
 }

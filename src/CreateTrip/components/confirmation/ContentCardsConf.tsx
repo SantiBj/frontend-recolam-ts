@@ -53,7 +53,7 @@ export function ContentCardsConf({ urlsTrip, stateTrip, addValueCont }: Props) {
     }
     return (
         <div>
-            <div className="flex justify-center gap-[20px] items-center">
+            <div className="flex justify-center gap-[20px] items-center bg-white">
                 <Link to={urlsTrip.scheduleDay} className="bg-white transition-all hover:scale-105 p-[10px] rounded-md">
                     {`Dia del viaje ${stateTrip.scheduleDay}`}
                 </Link>

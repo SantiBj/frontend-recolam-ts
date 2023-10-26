@@ -13,7 +13,7 @@ export interface Headers {
   };
 }
 
-export type GetValueUrl = (param: string) => void;
+export type GetValueUrl = (param: string) => string;
 export type AddValueUrl = (
   url: string,
   key: string,
@@ -34,6 +34,12 @@ export interface TripType {
   isDisable: boolean | null;
   truck: string | null;
 }
+
+export interface Truck {
+  
+}
+
+export type DateType = string 
 
 export interface DataPagination {
   next: string | null | undefined;

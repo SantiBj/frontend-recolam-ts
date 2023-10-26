@@ -1,11 +1,12 @@
 import { AiOutlineCheckCircle } from "react-icons/ai"
-import { AddTruck, TruckType } from "../../models/truck/types"
-import { DataState } from "../../models/types.d.all"
+import { AddTruck, TruckType } from "../CreateTrip/models/truck/types"
+import { DataState } from "../CreateTrip/models/types.d.all"
+
 
 interface Props {
     addTruck: AddTruck,
     truck: TruckType,
-    stateTrip: DataState
+    stateTrip: DataState | {truck : string}
 }
 
 export function CardTruck({ addTruck, truck, stateTrip }: Props) {

@@ -9,6 +9,10 @@ import { Home } from "./sections/Home/Home";
 import { Footer } from "./components/Footer";
 import { TripsActives } from "./sections/ActivesTrips/pages/TripsActives";
 import { DetailsTripActive } from "./sections/ActivesTrips/pages/DetailsTripActive";
+import { ListTripsWithoutTruck } from "./sections/assignTruck/pages/ListTripsWithoutTruck";
+import { TruckAvailable } from "./sections/assignTruck/pages/TruckAvailable";
+import { DetailsTrip } from "./sections/startTripC/pages/DetailsTrip";
+import { TripsWithoutStart } from "./sections/startTripC/pages/TripsWithoutStartC";
 
 function App() {
   return (
@@ -16,7 +20,6 @@ function App() {
       <HashRouter>
         <main className="bg-[url('https://acortar.link/lpmbDO')] bg-no-repeat  bg-center bg-cover">
           <NavBar />
-          <div>navbar</div>
           <section className="mb-[100px] w-[85%] max-w-[1300px] mx-auto flex flex-col justify-center min-h-[100vh]">
             <Routes>
               <Route path="" element={<Home />} />
@@ -34,6 +37,21 @@ function App() {
               <Route
                 path="/trip-active-details/:trip"
                 element={<DetailsTripActive />}
+              />
+              <Route path="/assign-truck/list" element={<ListTripsWithoutTruck />} />
+              <Route path="/trip/assign-truck/:trip/:date"
+                element={<TruckAvailable />} />
+              <Route
+                path="/trip-without-details/:trip/"
+                element={<DetailsTrip />}
+              />
+              <Route
+                path="/trips-without-init/"
+                element={<TripsWithoutStart />}
+              />
+              <Route
+                path="/trip-without-details/:trip/"
+                element={<DetailsTrip />}
               />
             </Routes>
           </section>
