@@ -9,6 +9,8 @@ import { CardCustomer } from "./CardCustomer";
 import { AddCustomer, CustomerType } from "../../models/customer/types";
 import { ListPaginate } from "../../../Models";
 import { Pagination } from "../../../components/Pagination";
+import { Errors } from "../../../components/Errors";
+import { Loading } from "../../../components/Loading";
 
 
 interface Props {
@@ -43,6 +45,12 @@ export function ContentCardsCust({ addValueCont, state, addUrlDirectory }: Props
         addUrlDirectory("customer", `/create-trip/customer?page=${page}`)
     }
 
+    if (loading || loading == null) {
+        return <Loading />;
+      }
+      if (codeState !== null && codeState !== 200) {
+        return <Errors message={mssg} />;
+      }
     return (
         <>
             <div className="grid justify-items-center gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] w-full">
