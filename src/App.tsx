@@ -13,6 +13,8 @@ import { ListTripsWithoutTruck } from "./sections/assignTruck/pages/ListTripsWit
 import { TruckAvailable } from "./sections/assignTruck/pages/TruckAvailable";
 import { DetailsTrip } from "./sections/startTripC/pages/DetailsTrip";
 import { TripsWithoutStart } from "./sections/startTripC/pages/TripsWithoutStartC";
+import { CreateUser } from "./sections/CreateUser/pages/CreateUser";
+import { NotFound } from "./sections/NotFound";
 
 function App() {
   return (
@@ -22,7 +24,8 @@ function App() {
           <NavBar />
           <section className="mb-[100px] w-[85%] max-w-[1300px] mx-auto flex flex-col justify-center min-h-[100vh]">
             <Routes>
-              <Route path="" element={<Home />} />
+              <Route path="*" element={<NotFound/>}/>
+              <Route path="/" element={<Home />} />
               <Route
                 path="/create-trip/scheduleDay"
                 element={<ScheduleDay />}
@@ -53,6 +56,7 @@ function App() {
                 path="/trip-without-details/:trip/"
                 element={<DetailsTrip />}
               />
+              <Route path="/create/user" element={<CreateUser />} />
             </Routes>
           </section>
           <Footer />

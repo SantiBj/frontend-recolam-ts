@@ -3,7 +3,7 @@ import { MdOutlineArrowBackIos } from "react-icons/md"
 
 interface Props {
     text: string,
-    to: string | false | null,
+    to?: string | false | null,
     color?: "black" | "white",
     size?: "lg" | "md" | "sm"
 }
