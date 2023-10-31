@@ -1,29 +1,32 @@
-import { Params, useParams } from "react-router-dom"
-import { RoleType } from "../models/types"
-import { TittleMajor } from "../../../components/TittleMajor"
-import { Title } from "../../../components/Title"
+import { useParams } from "react-router-dom";
+import { RoleEsType, RoleType, RolesEsType } from "../models/types";
+import { TittleMajor } from "../../../components/TittleMajor";
+import { Title } from "../../../components/Title";
+import { ContentInputsData } from "../components/ContentInputsData";
 
-const rolesInSpanish = {
-    customer: "Cliente",
-    admin: "Administrador",
-    truck: "Camion",
-}
+const rolesInSpanish: RolesEsType = {
+  customer: "Cliente",
+  admin: "Administrador",
+  truck: "Camion",
+};
 
 interface Params {
-    [key: string]: RoleType | undefined
+  [key: string]: RoleType | undefined;
 }
 
-
 export function DataUser() {
+  const { role } = useParams<Params>();
+  const roleSpanish: RoleEsType =
+    role !== undefined ? rolesInSpanish[role] : "";
 
-    const { role } = useParams<Params>()
-    const roleSpanish = role !== undefined && rolesInSpanish[role]
-
-    return (
-        <section className="space-y-[120px]">
-            <TittleMajor text={"Crear Usuario"} />
-            <Title to={"/create/user"} text={`Datos requeridos para crear un ${roleSpanish}`} />
-            <ContentInputsData roleSpanish={roleSpanish} role={role} />
-        </section>
-    )
+  return (
+    <section className="space-y-[120px]">
+      <TittleMajor text={"Crear Usuario"} />
+      <Title
+        to={"/create/user"}
+        text={`Datos requeridos para crear un ${roleSpanish}`}
+      />
+      <ContentInputsData roleInSpanish={roleSpanish} role={role!} />
+    </section>
+  );
 }

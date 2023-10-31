@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AddErrorInput, AddValueInput, InitialDataForm, ValueInputs } from "../CreateTrip/models/ScheduleDay/types"
+import { AddErrorInput, AddValueInput, InitialDataForm } from "../CreateTrip/models/ScheduleDay/types"
 
 
 export function useDataInputs<TInp, TErr>(dataInitial: InitialDataForm<TInp, TErr>) {
