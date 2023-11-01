@@ -11,8 +11,12 @@ import { UrlsTrip } from "../../models/types.d.all";
 import { addAddress } from "../../../service/addAddress";
 import { Loading } from "../../../components/Loading";
 import { CustomInput } from "../../../components/CustomInput";
+import SCHEDULE from "../../../utils/scheduleDay.png"
+import CUSTOMER from "../../../utils/building.png"
+import NHR from "../../../utils/nhr.png"
 
 interface Props {
+    openModal:()=>void
     urlsTrip: UrlsTrip
     stateTrip: DataState
     addValueCont: AddValueCont
@@ -29,7 +33,7 @@ const initialData: InitialDataForm<Inputs, ErrInputs> = {
 }
 
 
-export function ContentCardsConf({ urlsTrip, stateTrip, addValueCont }: Props) {
+export function ContentCardsConf({ openModal,urlsTrip, stateTrip, addValueCont }: Props) {
 
     const { data, addValueInput, addErrorInput } = useDataInputs<Inputs, ErrInputs>(initialData)
     const { customer, loading } = useCustomer(stateTrip.user)
@@ -53,44 +57,35 @@ export function ContentCardsConf({ urlsTrip, stateTrip, addValueCont }: Props) {
     }
     return (
         <div>
-            <div className="flex justify-center gap-[20px] items-center bg-white">
-                <Link to={urlsTrip.scheduleDay} className="bg-white transition-all hover:scale-105 p-[10px] rounded-md">
-                    {`Dia del viaje ${stateTrip.scheduleDay}`}
-                </Link>
-                <Link to={urlsTrip.customer}>
-                    <div
-                        className={`hover:scale-105 transition-all rounded-lg box-border w-[250px] h-[240px] p-[20px] overflow-y-auto bg-white`}
-                    >
-                        <img
-                            src="https://n9.cl/recolam"
-                            alt="cliente"
-                            className="w-[100px] bg-slate-300 h-[100px] mx-auto mb-[20px]"
-                        />
-                        <p>
-                            <span className="font-semibold">ID :</span> {customer?.id}
-                        </p>
-                        <p>
-                            <span className="font-semibold">Nombre :</span> {customer?.name}
-                        </p>
-                        <p>
-                            <span className="font-semibold">N° tel :</span>{" "}
-                            {customer?.numberPhone}
-                        </p>
-                    </div>
-                </Link>
-                <Link to={urlsTrip.truck}>
-                    <div className="bg-[#E6E6E6] w-[150px] p-[15px] rounded-lg space-y-[10px] transition-all hover:scale-105">
-                        <img
-                            src="https://acortar.link/WA1HsO"
-                            className="w-[100px] mx-auto"
-                            alt=""
-                        />
-                        <p className="text-center font-semibold">{stateTrip.truck}</p>
-                    </div>
-                </Link>
-            </div>
+            <div className="flex flex-col w-[50%] max-w-[500px] mx-auto rounded-xl gap-[5px] bg-white">
+                <Link to={urlsTrip.scheduleDay} className="hover:bg-gray-200 rounded-t-xl transition-all flex items-center gap-[10px] p-[10px] border-[1px]">
+                   <section> 
+                        <img src={SCHEDULE} className="w-[60px] h-[50px]" alt="" />
+                   </section>
+                    <section>
+                    <span className="font-bold">Fecha del viaje : </span>{stateTrip.scheduleDay}
+                        </section>
 
-            <CustomInput
+                </Link>
+                <Link to={urlsTrip.customer} className="hover:bg-gray-200 transition-all flex items-center gap-[10px] p-[10px] border-[1px]">
+                <section> 
+                        <img src={CUSTOMER} className="w-[60px] h-[50px]" alt="" />
+                   </section>
+                    <section className=" capitalize">
+                    <span className="font-bold">Cliente : </span>{customer?.id} / {customer?.name}
+                    </section>
+                
+                </Link>
+                <Link to={urlsTrip.truck} className="hover:bg-gray-200 transition-all flex items-center gap-[10px] p-[10px] border-[1px]">
+                <section> 
+                        <img src={NHR} className="w-[65px] h-[50px]" alt="" />
+                   </section>
+                    <section className=" capitalize">
+                    <span className="font-bold">Camión: </span>{stateTrip.truck}
+                    </section>
+                
+                </Link>
+                <CustomInput
                 type={"text"}
                 placeholder={"Direccion :"}
                 onChange={handlerChange}
@@ -98,6 +93,18 @@ export function ContentCardsConf({ urlsTrip, stateTrip, addValueCont }: Props) {
                 name={"address"}
                 error={data.errors.address}
             />
+            <button
+                onClick={openModal}
+                className={`bg-[#2c8d42] text-white ${stateTrip.address === ""
+                    ? "opacity-60 pointer-events-none"
+                    : "opacity-100 pointer-events-auto"
+                    } py-[10px] px-[12px] rounded-b-xl`}
+            >
+                Crear Viaje
+            </button> 
+            </div>
+
+            
         </div>
     )
 }

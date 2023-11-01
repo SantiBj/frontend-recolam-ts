@@ -4,11 +4,15 @@ import { TittleMajor } from "../../components/TittleMajor";
 import { BtnContinue } from "../components/scheduleDay/BtnContinue";
 import { createTrip } from "../context/CreateTrip";
 import { ContentCardsCust } from "../components/customer/ContentCardsCust";
+import { Navigate } from "react-router-dom";
 
 export function Customer() {
 
     const { state, addValueCont , urlsTrip ,addUrlDirectory } = useContext(createTrip)
 
+    if (state.scheduleDay === ""){
+        return <Navigate to={"/create-trip/scheduleDay"}/>
+    }
     return (
         <div>
             <div className="space-y-[30px]">

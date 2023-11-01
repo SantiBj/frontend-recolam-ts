@@ -36,7 +36,8 @@ export function useConsult<B, Resp>(url: string, method: Method = "GET", body: B
 
             if (typeof e.message === "object") {
                 const keys: Array<string> = Object.keys(e.message);
-                message = await translateM(e.message[keys[0][0]])
+                message = await translateM(e.message[keys[0]])
+                console.log(message)
             } else {
                 message = await translateM(e.message)
             }

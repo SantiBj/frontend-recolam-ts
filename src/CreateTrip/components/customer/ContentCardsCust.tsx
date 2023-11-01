@@ -11,67 +11,74 @@ import { ListPaginate } from "../../../Models";
 import { Pagination } from "../../../components/Pagination";
 import { Errors } from "../../../components/Errors";
 import { Loading } from "../../../components/Loading";
-
+import { Grid } from "../../../components/Grid";
 
 interface Props {
-    addValueCont: AddValueCont
-    state: DataState
-    addUrlDirectory: AddUrlDirectory
+  addValueCont: AddValueCont;
+  state: DataState;
+  addUrlDirectory: AddUrlDirectory;
 }
 
-export function ContentCardsCust({ addValueCont, state, addUrlDirectory }: Props) {
+export function ContentCardsCust({
+  addValueCont,
+  state,
+  addUrlDirectory,
+}: Props) {
+  const { addValueUrl, getValueUrl } = useQueryParams();
 
-    const { addValueUrl, getValueUrl } = useQueryParams()
-
-    const initialPagination: number = useMemo(() => {
-        const pagination = getValueUrl("page")
-        if (pagination == "") {
-            return 1
-        }
-        return parseInt(pagination)
-    }, [])
-
-    const { page, nextPage, prevPage } = usePaginate(initialPagination)
-    const { fecthingData, dataConsult, codeState, mssg, loading } = useConsult<null, ListPaginate<CustomerType>>(`customers/${state.scheduleDay}?page=${page}`)
-
-    useEffect(() => {
-        fecthingData()
-    }, [page])
-
-    const addCustomer: AddCustomer = (e) => {
-        const { name, value }: { name: string, value: string } = e.target
-        addValueCont(name, value)
-        addValueUrl("/create-trip/customer", "page", page)
-        addUrlDirectory("customer", `/create-trip/customer?page=${page}`)
+  const initialPagination: number = useMemo(() => {
+    const pagination = getValueUrl("page");
+    if (pagination == "") {
+      return 1;
     }
+    return parseInt(pagination);
+  }, []);
 
-    if (loading || loading == null) {
-        return <Loading />;
-      }
-      if (codeState !== null && codeState !== 200) {
-        return <Errors message={mssg} />;
-      }
-    return (
-        <>
-            <div className="grid justify-items-center gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] w-full">
-                {dataConsult?.results.map((customer) => (
-                    <CardCustomer
-                        key={customer.id}
-                        customer={customer}
-                        stateTrip={state}
-                        addCustomer={addCustomer}
-                    />
-                ))}
-            </div>
-            <Pagination
-                dataConsult={{
-                    previous: dataConsult?.previous,
-                    next: dataConsult?.next
-                }}
-                page={page}
-                nextPage={nextPage}
-                prevPage={prevPage}
-            />
-        </>
-    )
+  const { page, nextPage, prevPage } = usePaginate(initialPagination);
+  const { fecthingData, dataConsult, codeState, mssg, loading } = useConsult<
+    null,
+    ListPaginate<CustomerType>
+  >(`customers/${state.scheduleDay}?page=${page}`);
+
+  useEffect(() => {
+    fecthingData();
+  }, [page]);
+
+  const addCustomer: AddCustomer = (e) => {
+    const { name, value }: { name: string; value: string } = e.target;
+    addValueCont(name, value);
+    addValueUrl("/create-trip/customer", "page", page);
+    addUrlDirectory("customer", `/create-trip/customer?page=${page}`);
+  };
+
+  if (loading || loading == null) {
+    return <Loading />;
+  }
+  if (codeState !== null && codeState !== 200) {
+    return <Errors message={mssg} />;
+  }
+  return (
+    <>
+      <Grid>
+        {dataConsult?.results.map((customer) => (
+          <CardCustomer
+            key={customer.id}
+            customer={customer}
+            stateTrip={state}
+            addCustomer={addCustomer}
+          />
+        ))}
+      </Grid>
+
+      <Pagination
+        dataConsult={{
+          previous: dataConsult?.previous,
+          next: dataConsult?.next,
+        }}
+        page={page}
+        nextPage={nextPage}
+        prevPage={prevPage}
+      />
+    </>
+  );
 }

@@ -7,7 +7,7 @@ export function CreateUser() {
         <section className="space-y-[100px]">
             <TittleMajor text={"Crear Usuario"} />
             <Title text={"Selecione un rol : "} />
-            <section>
+            <section className="flex justify-center">
                 <ContentRoles />
             </section>
         </section>

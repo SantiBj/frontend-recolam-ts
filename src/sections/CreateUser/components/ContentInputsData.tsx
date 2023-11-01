@@ -25,10 +25,10 @@ export function ContentInputsData({ role, roleInSpanish }: Props) {
     ErrFormType
   >(initialDataUser);
 
-  function handleChange(name:string,value:string) {
-    validationDataUser(name, value, role, data, addErrorInput);
+  function handleChange(name: string, value: string) {
     const valueLower = value.toLowerCase()
-    addValueInput({name,value:valueLower});
+    addValueInput({ name, value: valueLower });
+    validationDataUser(name, value, role, data, addErrorInput);
   }
 
   return (
@@ -90,8 +90,8 @@ export function ContentInputsData({ role, roleInSpanish }: Props) {
           name={"id"}
           label={"Placa :"}
           handleChange={handleChange}
-          errors={null}
-          value={data.inputs.role}
+          errors={data.errors.id}
+          value={data.inputs.id}
           example="trj915"
         />
       )}

@@ -26,7 +26,7 @@ export function TripsActives() {
     return <Errors message={mssg} />;
   }
   return (
-    <article className="space-y-[150px]">
+    <article className="space-y-[100px]">
       <TittleMajor text="Viajes activos"/>
       <section>
         {dataConsult?.results.map((trip) => (

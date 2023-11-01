@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { DataFormType, RoleEsType, RoleType } from "../models/types";
-import { useMemo } from "react";
+import { useEffect } from "react";
 import { useConsult } from "../../../hooks/useConsult";
 import { Loading } from "../../../components/Loading";
 import { FaMapLocationDot } from "react-icons/fa6"
@@ -18,15 +18,16 @@ interface Props {
 export function ContentM({ role, roleInSpanish, infoForm, closeModal }: Props) {
   const navigate = useNavigate();
 
-  useMemo(() => {
+  useEffect(() => {
     infoForm.role = role;
   }, []);
 
-  const { codeState, mssg, loading, fecthingData, resetAll } = useConsult<>(
+  const { codeState, mssg, loading, fecthingData, resetAll } = useConsult(
     "register",
     "POST",
     infoForm
   );
+
 
   function error() {
     resetAll();
@@ -59,7 +60,7 @@ export function ContentM({ role, roleInSpanish, infoForm, closeModal }: Props) {
           <div className="text-green-600">
             <BiCheckCircle size={45} />
           </div>
-          <div>El {roleInSpanish} ha sido creado</div>{" "}
+          <div className="text-center">El {roleInSpanish} ha sido creado</div>{" "}
           <div className="flex gap-[20px] mt-[20px]">
             <BtnAcceptM action={success} />
           </div>
@@ -70,7 +71,7 @@ export function ContentM({ role, roleInSpanish, infoForm, closeModal }: Props) {
           <div className="text-red-500">
             <BiErrorAlt size={45} />
           </div>
-          <div>{mssg}</div>
+          <div className="text-center">{mssg}</div>
           <div className="flex gap-[20px] mt-[20px]">
             <BtnAcceptM action={error} />
           </div>

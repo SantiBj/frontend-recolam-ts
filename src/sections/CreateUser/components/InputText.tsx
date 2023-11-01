@@ -24,6 +24,7 @@ export function InputText({
     handleChange(name, value);
   }
 
+
   return (
     <section className="flex flex-col gap-[3px]">
       <label className="">{label}</label>
@@ -39,7 +40,7 @@ export function InputText({
         placeholder={example}
       />
       <div className="text-red-500 text-[14px]">
-        {errors && <p>{errors}</p>}
+        {(errors !== null && errors !== "") && <p>{errors}</p>}
       </div>
     </section>
   );

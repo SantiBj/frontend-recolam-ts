@@ -1,10 +1,12 @@
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { Navigate } from "react-router-dom"
 import { createTrip } from "../context/CreateTrip"
 import { useModal } from "../../hooks/useModal"
 import { ModalGeneric } from "../../components/ModalGeneric"
 import { ContentM } from "../components/confirmation/ContentM"
 import { ContentCardsConf } from "../components/confirmation/ContentCardsConf"
+import { TittleMajor } from "../../components/TittleMajor"
+import { Title } from "../../components/Title"
 
 export function Confirmation() {
     const {
@@ -18,11 +20,14 @@ export function Confirmation() {
     const { closeModal, openModal, modal } = useModal()
 
     if (state.user === "") {
-        return <Navigate to="/create-trip-customer" />
+        return <Navigate to={urlsTrip.customer} />
     }
-
     return (
-        <>
+        <article>
+            <section className="space-y-[30px]">
+               <TittleMajor text="Crear viaje"/>
+            <Title text="Resumen del viaje :" to={urlsTrip.truck}/> 
+            </section>
             <ModalGeneric
                 content={
                     <ContentM
@@ -34,16 +39,15 @@ export function Confirmation() {
                 }
                 isOpen={modal}
             />
-            <ContentCardsConf stateTrip={state} urlsTrip={urlsTrip} addValueCont={addValueCont} />
-            <button
-                onClick={openModal}
-                className={`bg-green-400 ${state.address === ""
-                    ? "opacity-60 pointer-events-none"
-                    : "opacity-100 pointer-events-auto"
-                    } py-[8px] px-[12px]`}
-            >
-                crear viaje
-            </button>
-        </>
+            <section className="mt-[60px]">
+               <ContentCardsConf 
+                openModal={openModal} 
+                stateTrip={state} 
+                urlsTrip={urlsTrip} 
+                addValueCont={addValueCont} 
+                />
+            </section>
+            
+        </article>
     )
 }

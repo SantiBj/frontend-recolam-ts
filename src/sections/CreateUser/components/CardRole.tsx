@@ -1,6 +1,8 @@
 import { TbTruckDelivery, } from "react-icons/tb"
 import { Link } from "react-router-dom"
 import { RoleType } from "../models/types"
+import roleCustomer from "../../../utils/rol-user.png"
+import roleAdmin from "../../../utils/rol-admin.png"
 
 interface Props {
     role:RoleType
@@ -24,7 +26,7 @@ export function CardRole({ role,to }:Props){
             <>
               <div>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/4814/4814852.png"
+                  src={roleCustomer}
                   className="w-[40px]"
                   alt=""
                 />
@@ -36,7 +38,7 @@ export function CardRole({ role,to }:Props){
             <>
               <div>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/2206/2206368.png"
+                  src={roleAdmin}
                   className="w-[40px]"
                   alt=""
                 />

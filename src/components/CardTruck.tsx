@@ -1,12 +1,12 @@
 import { AiOutlineCheckCircle } from "react-icons/ai"
 import { AddTruck, TruckType } from "../CreateTrip/models/truck/types"
 import { DataState } from "../CreateTrip/models/types.d.all"
-
+import NHR from "../utils/nhr.png"
 
 interface Props {
     addTruck: AddTruck,
     truck: TruckType,
-    stateTrip: DataState | {truck : string}
+    stateTrip: DataState | { truck: string }
 }
 
 export function CardTruck({ addTruck, truck, stateTrip }: Props) {
@@ -34,7 +34,7 @@ export function CardTruck({ addTruck, truck, stateTrip }: Props) {
                         <AiOutlineCheckCircle size={25} />
                     </div>
                     <img
-                        src="https://acortar.link/WA1HsO"
+                        src={NHR}
                         className="w-[100px] mx-auto"
                         alt=""
                     />

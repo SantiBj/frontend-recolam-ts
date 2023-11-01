@@ -15,16 +15,17 @@ import { DetailsTrip } from "./sections/startTripC/pages/DetailsTrip";
 import { TripsWithoutStart } from "./sections/startTripC/pages/TripsWithoutStartC";
 import { CreateUser } from "./sections/CreateUser/pages/CreateUser";
 import { NotFound } from "./sections/NotFound";
+import { DataUser } from "./sections/CreateUser/pages/DataUser";
 
 function App() {
   return (
     <CreateTrip>
       <HashRouter>
-        <main className="bg-[url('https://acortar.link/lpmbDO')] bg-no-repeat  bg-center bg-cover">
+        <main className="select-none bg-[url('https://acortar.link/lpmbDO')] bg-no-repeat  bg-center bg-cover">
           <NavBar />
           <section className="mb-[100px] w-[85%] max-w-[1300px] mx-auto flex flex-col justify-center min-h-[100vh]">
             <Routes>
-              <Route path="*" element={<NotFound/>}/>
+              <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Home />} />
               <Route
                 path="/create-trip/scheduleDay"
@@ -57,6 +58,7 @@ function App() {
                 element={<DetailsTrip />}
               />
               <Route path="/create/user" element={<CreateUser />} />
+              <Route path="/create/user/:role" element={<DataUser />} />
             </Routes>
           </section>
           <Footer />
