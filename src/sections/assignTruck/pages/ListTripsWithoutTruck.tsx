@@ -42,6 +42,7 @@ export function ListTripsWithoutTruck() {
       <Grid>
         {dataConsult?.results.map((trip) => (
           <CardTrip
+            key={trip.id}
             trip={trip}
             to={`/trip/assign-truck/`}
             assignTruck
@@ -49,17 +50,19 @@ export function ListTripsWithoutTruck() {
           />
         ))}
       </Grid>
-      {(dataConsult !== null && dataConsult.next !== null && dataConsult.previous !== null) && (
-        <Pagination
-          dataConsult={{
-            next: dataConsult?.next,
-            previous: dataConsult?.previous,
-          }}
-          page={page}
-          nextPage={nextPage}
-          prevPage={prevPage}
-        />
-      )}
+      {dataConsult !== null &&
+        dataConsult.next !== null &&
+        dataConsult.previous !== null && (
+          <Pagination
+            dataConsult={{
+              next: dataConsult?.next,
+              previous: dataConsult?.previous,
+            }}
+            page={page}
+            nextPage={nextPage}
+            prevPage={prevPage}
+          />
+        )}
     </div>
   );
 }

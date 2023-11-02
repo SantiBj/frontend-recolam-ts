@@ -31,6 +31,7 @@ export function CardTrip({
     }
   }, []);
 
+
   return (
     <Link
       className="bg-white relative w-[350px] hover:opacity-80 translate-all h-[250px] overflow-y-auto flex items-center p-[20px] rounded-xl"
@@ -54,11 +55,11 @@ export function CardTrip({
           <section className="w-[260px]">
             <ul>
               <li>
-                <span className="font-bold">CC: dddddddd</span>
+                <span className="font-bold">ID:</span>
                 {trip.user.id}
               </li>
               <li>
-                <span className="font-bold ">Nombre: </span>
+                <span className="font-bold ">Cliente: </span>
                 {trip.user.name}
               </li>
               <li>

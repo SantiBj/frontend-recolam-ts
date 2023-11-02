@@ -52,3 +52,5 @@ export interface ListPaginate<T> {
   previous: string | null;
   results: Array<T>;
 }
+
+export type StateTripType = "ICP" | "ICL" | "ECL" | "ECP"

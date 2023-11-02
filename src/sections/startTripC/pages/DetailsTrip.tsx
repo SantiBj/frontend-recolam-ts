@@ -17,7 +17,7 @@ export function DetailsTrip() {
   const { trip } = useParams();
   const tripDecrypt = decrypt(trip!);
   const { getValueUrl } = useQueryParams();
-  const prevPages = useMemo(() => {
+  const prevPage = useMemo(() => {
     return getValueUrl("page");
   }, []);
   const { modal, openModal, closeModal } = useModal();
@@ -60,7 +60,7 @@ export function DetailsTrip() {
         text="Detalles del viaje :"
         color="white"
         size="lg"
-        to="/trips-without-init/"
+        to={`/trips-without-init/?page=${prevPage}`}
       />
       <section className="bg-white p-[50px] w-[85%] md:w-[60%] max-w-[500px] mx-auto rounded-xl">
         <section className="space-y-[30px]">
@@ -74,6 +74,12 @@ export function DetailsTrip() {
             <div>
               <span className="font-bold">Dia del viaje: </span>
               {dataConsult?.scheduleDay}
+            </div>
+            <div>
+              <span className="font-bold">ID: </span>
+              {dataConsult !== null &&
+                typeof dataConsult.user === "object" &&
+                dataConsult?.user.id}
             </div>
             <div>
               <span className="font-bold">Cliente: </span>

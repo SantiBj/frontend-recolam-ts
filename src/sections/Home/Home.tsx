@@ -1,6 +1,6 @@
 export function Home(){
     return(
-        <div className="h-screen flex">
+        <div className="h-screen flex bg-white">
             <div className="w-[50%]">
                 video instructivo
             </div>
