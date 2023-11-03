@@ -4,19 +4,19 @@ import { DataState } from "../CreateTrip/models/types.d.all"
 import NHR from "../utils/nhr.png"
 
 interface Props {
-    addTruck: AddTruck,
+    addTruck?: AddTruck,
     truck: TruckType,
-    stateTrip: DataState | { truck: string }
+    stateTrip?: DataState | { truck: string }
 }
 
 export function CardTruck({ addTruck, truck, stateTrip }: Props) {
 
     const onChange = (placa: string) => () => {
-        addTruck(placa)
+        addTruck!(placa)
     }
     return (
         <div
-            className={`${stateTrip.truck === truck.placa &&
+            className={`${stateTrip?.truck === truck.placa &&
                 "border-[2px] rounded-lg border-green-600 p-[5px] w-fit"
                 }`}
         >
@@ -30,7 +30,7 @@ export function CardTruck({ addTruck, truck, stateTrip }: Props) {
                         id={truck.placa}
                         value={truck.placa}
                     />
-                    <div className={`${stateTrip.truck !== truck.placa && "hidden"} absolute top-0 text-green-600`}>
+                    <div className={`${stateTrip!.truck !== truck.placa && "hidden"} absolute top-0 text-green-600`}>
                         <AiOutlineCheckCircle size={25} />
                     </div>
                     <img

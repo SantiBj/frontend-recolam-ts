@@ -8,6 +8,7 @@ import { OptionsTrips } from "./NavBar/OptionsTrips";
 export function NavBar() {
     const [movil, setMovil] = useState<boolean>(true);
   
+    
     function setVisibilityMovil() {
       setMovil(!movil);
     }
@@ -15,9 +16,9 @@ export function NavBar() {
     return (
       <>
         {" "}
-        <nav className="flex flex-col md:flex-row justify-between items-center py-[20px] w-[85%] max-w-[1300px] mx-auto">
+        <nav className="flex flex-col md:flex-row justify-between items-center py-[20px] px-[5%]">
           <div className="w-full md:w-[30%] flex justify-between items-center">
-            <div className="w-fit p-[3px] rounded-md flex gap-[4px]">
+            <Link to={"/"} className="w-fit p-[3px] rounded-md flex gap-[4px]">
               <img src={pread} className="h-[45px] mr-[10px]" />
               <div className="bg-white w-[2px]"></div>
               <img
@@ -25,7 +26,7 @@ export function NavBar() {
                 alt="Recolam"
                 className="h-[45px]"
               />
-            </div>
+            </Link>
             <div
               onClick={setVisibilityMovil}
               className="text-white transition-all md:hidden"

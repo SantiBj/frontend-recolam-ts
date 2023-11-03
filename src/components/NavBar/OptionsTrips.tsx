@@ -1,43 +1,41 @@
-import { useState } from "react"
-import { LinkTrip } from "./LinkTrip";
+import { useState } from "react";
+import { OptionsTripsUI } from "./OptionsTripsUI";
 
 export function OptionsTrips() {
-    const [optionsTrips, setOptionsTrips] = useState<boolean>(false);
-  
-    function handleMouseEnter() {
-      setOptionsTrips(true);
-    }
-  
-    function handleMouseLeave() {
+  const [optionsTrips, setOptionsTrips] = useState<boolean>(false);
+
+  function handleMouseEnter() {
+    setOptionsTrips(true);
+  }
+
+  function handleMouseLeave() {
+    setTimeout(() => {
       setOptionsTrips(false);
-    }
-  
-    return (
-      <div
-        className="flex flex-col"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+    }, 500);
+  }
+
+  function handleClick() {
+    setOptionsTrips(!optionsTrips);
+  }
+
+  return (
+    <>
+      <div className="p-[2px] z-20"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}>
         <div
-          className={`text-center ${
-            optionsTrips &&
-            "bg-[#0DB23C] rounded-t-lg w-[125px] transition-all"
-          }`}
+          className="flex-col transition-all hidden md:flex border-[1px] border-dashed w-[125px] rounded-t-lg"
+          
         >
-          viajes
-        </div>
-        <div
-          className={`${
-            !optionsTrips && "hidden"
-          } transition-all flex flex-col items-center bg-[#0DB23C] rounded-b-lg absolute top-[60px] w-[125px]`}
-        >
-          <LinkTrip to={"/trip-actives"} text={"Viajes Activos"} />
-          <LinkTrip to={"/create-trip/scheduleDay"} text={"Crear Viaje"} />
-          <LinkTrip to={"/assign-truck/list"} text={"Asignar Camion"}/>
-          <LinkTrip to={"/trips-without-init/"} text={"Iniciar Viaje"} />
-          <LinkTrip to={"/trips"} text={"Editar Viaje"} />
+          <OptionsTripsUI optionsTrips={optionsTrips} />
         </div>
       </div>
-    );
-  }
-  
+      <div
+        className="flex-col transition-all md:hidden w-[125px] rounded-lg"
+        onClick={handleClick}
+      >
+        <OptionsTripsUI optionsTrips={optionsTrips} />
+      </div>
+    </>
+  );
+}

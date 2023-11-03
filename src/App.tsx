@@ -16,12 +16,13 @@ import { TripsWithoutStart } from "./sections/startTripC/pages/TripsWithoutStart
 import { CreateUser } from "./sections/CreateUser/pages/CreateUser";
 import { NotFound } from "./sections/NotFound";
 import { DataUser } from "./sections/CreateUser/pages/DataUser";
+import { Trucks } from "./sections/StateTrucks/pages/Trucks";
 
 function App() {
   return (
     <CreateTrip>
       <HashRouter>
-        <main className="select-none bg-[url('https://acortar.link/lpmbDO')] bg-no-repeat  bg-center bg-cover">
+        <main className="transition-all select-none bg-[url('https://acortar.link/lpmbDO')] bg-no-repeat  bg-center bg-cover">
           <NavBar />
           <section className="mb-[100px] w-[85%] max-w-[1300px] mx-auto flex flex-col justify-center min-h-[100vh]">
             <Routes>
@@ -42,9 +43,14 @@ function App() {
                 path="/trip-active-details/:trip"
                 element={<DetailsTripActive />}
               />
-              <Route path="/assign-truck/list" element={<ListTripsWithoutTruck />} />
-              <Route path="/trip/assign-truck/:trip/:date"
-                element={<TruckAvailable />} />
+              <Route
+                path="/assign-truck/list"
+                element={<ListTripsWithoutTruck />}
+              />
+              <Route
+                path="/trip/assign-truck/:trip/:date"
+                element={<TruckAvailable />}
+              />
               <Route
                 path="/trip-without-details/:trip/"
                 element={<DetailsTrip />}
@@ -59,6 +65,7 @@ function App() {
               />
               <Route path="/create/user" element={<CreateUser />} />
               <Route path="/create/user/:role" element={<DataUser />} />
+              <Route path="/trucks" element={<Trucks />} />
             </Routes>
           </section>
           <Footer />
