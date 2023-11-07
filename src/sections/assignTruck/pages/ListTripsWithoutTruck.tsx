@@ -51,8 +51,8 @@ export function ListTripsWithoutTruck() {
         ))}
       </Grid>
       {dataConsult !== null &&
-        dataConsult.next !== null &&
-        dataConsult.previous !== null && (
+        dataConsult?.next !== null ||
+        dataConsult?.previous !== null && (
           <Pagination
             dataConsult={{
               next: dataConsult?.next,

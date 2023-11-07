@@ -17,6 +17,8 @@ import { CreateUser } from "./sections/CreateUser/pages/CreateUser";
 import { NotFound } from "./sections/NotFound";
 import { DataUser } from "./sections/CreateUser/pages/DataUser";
 import { Trucks } from "./sections/StateTrucks/pages/Trucks";
+import { ListTrips } from "./sections/EditTrip/pages/ListTrips";
+import { EditTrip } from "./sections/EditTrip/pages/EditTrip";
 
 function App() {
   return (
@@ -66,6 +68,9 @@ function App() {
               <Route path="/create/user" element={<CreateUser />} />
               <Route path="/create/user/:role" element={<DataUser />} />
               <Route path="/trucks" element={<Trucks />} />
+              <Route path="/trips" element={<ListTrips />} />
+              <Route path="/trip-edit/:idTripEncript" element={<EditTrip />} />
+              
             </Routes>
           </section>
           <Footer />
