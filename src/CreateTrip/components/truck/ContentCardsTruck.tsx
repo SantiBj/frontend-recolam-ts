@@ -12,12 +12,13 @@ import { ListPaginate } from "../../../Models";
 import { AddTruck, TruckType } from "../../models/truck/types";
 import { CardTruck } from "../../../components/CardTruck";
 import { Grid } from "../../../components/Grid";
+import { BtnContinue } from "../scheduleDay/BtnContinue";
 
 interface Props {
   addUrlDirectory: AddUrlDirectory;
   truckSelected: DataState;
   addValue: AddValueCont;
-  newDateTrip: any;
+  newDateTrip: string;
   isCreate: boolean;
 }
 
@@ -78,6 +79,10 @@ export function ContentCardsTruck({
           />
         ))}
       </Grid>
+
+      <div className="w-full flex justify-end">
+          <BtnContinue to={"/create-trip/confirmation"} />
+        </div>
 
       <Pagination
         dataConsult={{

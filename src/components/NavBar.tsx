@@ -29,7 +29,7 @@ export function NavBar() {
             </Link>
             <div
               onClick={setVisibilityMovil}
-              className="text-white transition-all md:hidden"
+              className="text-white transition-all md:hidden cursor-pointer"
             >
               {movil ? <FiX size={35} /> : <IoMdMenu size={35} />}
             </div>

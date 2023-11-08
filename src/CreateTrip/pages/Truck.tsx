@@ -3,7 +3,6 @@ import { createTrip } from "../context/CreateTrip"
 import { Navigate } from "react-router-dom"
 import { TittleMajor } from "../../components/TittleMajor"
 import { Title } from "../../components/Title"
-import { BtnContinue } from "../components/scheduleDay/BtnContinue"
 import { ContentCardsTruck } from "../components/truck/ContentCardsTruck"
 import { TbTruckOff } from "react-icons/tb";
 
@@ -45,9 +44,6 @@ export function Truck() {
           newDateTrip={state.scheduleDay}
           isCreate
         />
-        <div className="w-full flex justify-end">
-          <BtnContinue to={"/create-trip/confirmation"} />
-        </div>
       </div>
       </section>
       
