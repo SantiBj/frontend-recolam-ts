@@ -72,8 +72,7 @@ export function CreateTrip({ children }: Props) {
         const message = await response.json()
         throw { status: response.status, message: message.message }
       }
-      const data: { avaliable: boolean } = await response.json()
-      if (data.avaliable) {
+      if (response.status == 200) {
         addErrorInput("scheduleDay", null)
       }
     } catch (e: any) {

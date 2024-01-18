@@ -8,7 +8,6 @@ export function ContentRoles() {
         <section className="flex flex-col md:flex-row gap-[50px]">
             <CardRole role={"customer"} to={url.current + "customer"} />
             <CardRole role={"admin"} to={url.current + "admin"} />
-            <CardRole role={"truck"} to={url.current + "truck"} />
         </section>
     )
 }

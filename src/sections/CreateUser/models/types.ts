@@ -1,24 +1,23 @@
-export type RoleType = "truck" | "customer" | "admin";
-export type RoleEsType = "" | "Camion" | "Cliente" | "Administrador";
+export type RoleType = "customer" | "admin";
+export type RoleEsType = "Cliente" | "Administrador";
 
 export interface RolesEsType {
   customer: RoleEsType;
   admin: RoleEsType;
-  truck: RoleEsType;
 }
 
 export interface DataFormType {
-  id: string;
+  document : string;
   name: string;
   address: string;
   numberPhone: string;
-  role: RoleType | "";
+  isAdmin:boolean;
 }
 
-export type NameInput = "id" | "name" | "address" | "numberPhone" | "role";
+export type NameInput = "document" | "name" | "address" | "numberPhone" | "role";
 
 export interface ErrFormType {
-  id: string | null;
+  document: string | null;
   name: string | null;
   address: string | null;
   numberPhone: string | null;

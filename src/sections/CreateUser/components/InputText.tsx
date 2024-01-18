@@ -7,7 +7,7 @@ interface Props {
   value: string;
   example: string;
   errors: string | null;
-  handleChange: (name: string, value: string) => void;
+  handleChange: (name: NameInput, value: string) => void;
 }
 
 export function InputText({
@@ -20,7 +20,9 @@ export function InputText({
 }: Props) {
     
   function change(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
+    const inputEvent = e.target
+    const name:NameInput= (inputEvent.name as NameInput);
+    const value:string = inputEvent.value
     handleChange(name, value);
   }
 
@@ -32,7 +34,7 @@ export function InputText({
         onChange={change}
         required
         className={`p-[5px] ${
-          name !== "id" && "capitalize"
+          name !== "document" && "capitalize"
         } border-gray-200 border-[2px] rounded-lg`}
         type="text"
         value={value}

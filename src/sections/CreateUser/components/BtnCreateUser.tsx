@@ -12,8 +12,8 @@ export function BtnCreateUser({ errorsForm, role, openModal }: Props) {
       onClick={openModal}
       className={`${
         (role == "customer" &&
-          (errorsForm.id == null ||
-            (errorsForm.id !== null && errorsForm.id !== "") ||
+          (errorsForm.document == null ||
+            (errorsForm.document !== null && errorsForm.document !== "") ||
             errorsForm.name == null ||
             (errorsForm.name !== null && errorsForm.name !== "") ||
             errorsForm.address == null ||
@@ -22,13 +22,10 @@ export function BtnCreateUser({ errorsForm, role, openModal }: Props) {
             (errorsForm.numberPhone !== null &&
               errorsForm.numberPhone !== ""))) ||
         (role == "admin" &&
-          (errorsForm.id == null ||
-            (errorsForm.id !== null && errorsForm.id !== "") ||
+          (errorsForm.document == null ||
+            (errorsForm.document !== null && errorsForm.document !== "") ||
             errorsForm.name == null ||
-            (errorsForm.name !== null && errorsForm.name !== ""))) ||
-        (role == "truck" &&
-          (errorsForm.id == null ||
-            (errorsForm.id !== null && errorsForm.id !== "")))
+            (errorsForm.name !== null && errorsForm.name !== "")))
           ? "opacity-60 pointer-events-none"
           : ""
       } p-[5px] bg-green-500`}

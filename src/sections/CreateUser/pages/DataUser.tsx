@@ -6,8 +6,7 @@ import { ContentInputsData } from "../components/ContentInputsData";
 
 const rolesInSpanish: RolesEsType = {
   customer: "Cliente",
-  admin: "Administrador",
-  truck: "Camion",
+  admin: "Administrador"
 };
 
 interface Params {
@@ -16,9 +15,8 @@ interface Params {
 
 export function DataUser() {
   const { role } = useParams<Params>();
-  const roleSpanish: RoleEsType =
-    role !== undefined ? rolesInSpanish[role] : "";
-
+  const roleSpanish: RoleEsType = rolesInSpanish[role!];
+  
   return (
     <section className="space-y-[120px]">
       <TittleMajor text={"Crear Usuario"} />

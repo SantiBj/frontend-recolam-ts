@@ -5,43 +5,31 @@ import {
 import {
   DataFormType,
   ErrFormType,
-  RoleType,
+  NameInput
 } from "../models/types";
 
 export function validationDataUser(
-  name: string,
+  name: NameInput,
   value: string,
-  role: RoleType,
   info: InitialDataForm<DataFormType, ErrFormType>,
   addErrorInput: AddErrorInput
 ) {
   value = value.trim();
   switch (name) {
-    case "id": {
+    case "document": {
       const regexAdminAndCustomer: RegExp = /^\d{6,10}$/;
-      const regexTruck: RegExp = /^[a-zA-Z]{3}\d{3}$/;
-
+      //const regexTruck: RegExp = /^[a-zA-Z]{3}\d{3}$/;
+      console.log(value)
       if (value == "") {
-        addErrorInput("id", "El numero de identificacion es requerido");
-      } else if (
-        role == "truck"
-          ? !regexTruck.test(value)
-          : !regexAdminAndCustomer.test(value)
-      ) {
-        if (role == "truck") {
-          addErrorInput(
-            "id",
-            "La placa debe ser de 6 digitos y las letras deben ser mayusculas"
-          );
-        } else {
-          addErrorInput(
-            "id",
-            "El campo debe ser numerico y debe contener entre 6 y 10 digitos"
-          );
-        }
+        addErrorInput("document", "El numero de identificacion es requerido");
+      } else if (!regexAdminAndCustomer.test(value)) {
+        addErrorInput(
+          "document",
+          "El campo debe ser numerico y debe contener entre 6 y 10 digitos"
+        );
       } else {
-        if (info.errors.id == null || info.errors.id !== "") {
-          addErrorInput("id", "");
+        if (info.errors.document == null || info.errors.document !== "") {
+          addErrorInput("document", "");
         }
       }
       break;

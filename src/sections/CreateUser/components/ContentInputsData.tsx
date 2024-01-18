@@ -4,6 +4,7 @@ import { initialDataUser } from "../helpers/InitialDataForm";
 import {
   DataFormType,
   ErrFormType,
+  NameInput,
   RoleEsType,
   RoleType,
 } from "../models/types";
@@ -25,11 +26,12 @@ export function ContentInputsData({ role, roleInSpanish }: Props) {
     ErrFormType
   >(initialDataUser);
 
-  function handleChange(name: string, value: string) {
-    const valueLower = value.toLowerCase()
+  function handleChange(name: NameInput, value: string) {
+    const valueLower = value.toLowerCase();
     addValueInput({ name, value: valueLower });
-    validationDataUser(name, value, role, data, addErrorInput);
+    validationDataUser(name, value, data, addErrorInput);
   }
+
 
   return (
     <main className="flex flex-col gap-[20px] bg-white p-[70px] rounded-2xl w-[70%] mx-auto md:w-[40%] max-w-[600px]">
@@ -44,58 +46,42 @@ export function ContentInputsData({ role, roleInSpanish }: Props) {
         }
         isOpen={modal}
       />
-
-      {(role == "customer" || role == "admin") && (
-        <>
+      <InputText
+        name={"document"}
+        label={"Numero de idenficacion :"}
+        handleChange={handleChange}
+        errors={data.errors.document}
+        value={data.inputs.document}
+        example={"857946"}
+      />
+      <InputText
+        name={"name"}
+        label={"Nombre :"}
+        errors={data.errors.name}
+        value={data.inputs.name}
+        handleChange={handleChange}
+        example={role ===  "admin" ? "Admin 1" : "Recolam S.A" }
+      />
+      {
+        role == "customer" && <>
           <InputText
-            name={"id"}
-            label={"Numero de idenficacion :"}
-            handleChange={handleChange}
-            errors={data.errors.id}
-            value={data.inputs.id}
-            example={"857946"}
-          />
-          <InputText
-            name={"name"}
-            label={"Nombre :"}
-            errors={data.errors.name}
-            value={data.inputs.name}
-            handleChange={handleChange}
-            example={"Recolam S.A"}
-          />
-        </>
-      )}
-      {role == "customer" && (
-        <>
-          <InputText
-            name={"address"}
-            label={"Direccion :"}
-            value={data.inputs.address}
-            errors={data.errors.address}
-            handleChange={handleChange}
-            example="Cll 15 #59-90"
+          name={"address"}
+          label={"Direccion :"}
+          errors={data.errors.address}
+          value={data.inputs.address}
+          handleChange={handleChange}
+          example={"Calle 20 #20-41 Puente Aranda"}
           />
           <InputText
             name={"numberPhone"}
-            label={"telefono de contacto"}
-            value={data.inputs.numberPhone}
+            label={"Numero de telefono :"}
             errors={data.errors.numberPhone}
+            value={data.inputs.numberPhone}
             handleChange={handleChange}
-            example={"3223669568"}
+            example={"3125367452"}
           />
         </>
-      )}
-      {role == "truck" && (
-        <InputText
-          name={"id"}
-          label={"Placa :"}
-          handleChange={handleChange}
-          errors={data.errors.id}
-          value={data.inputs.id}
-          example="trj915"
-        />
-      )}
-
+      }
       <BtnCreateUser
         openModal={openModal}
         role={role}

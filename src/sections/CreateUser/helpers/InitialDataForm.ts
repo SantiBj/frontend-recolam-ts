@@ -2,15 +2,15 @@ import { InitialDataForm } from "../../../CreateTrip/models/ScheduleDay/types"
 import { DataFormType, ErrFormType } from "../models/types"
 
 const initialDtaForm: DataFormType = {
-    id: "",
+    document: "",
     name: "",
     address: "",
     numberPhone: "",
-    role: "",
+    isAdmin: false,
 }
 
 const errorsDtaForm: ErrFormType = {
-    id: null,
+    document: null,
     name: null,
     address: null,
     numberPhone: null

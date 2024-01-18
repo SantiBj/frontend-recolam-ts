@@ -19,7 +19,7 @@ export function ContentM({ role, roleInSpanish, infoForm, closeModal }: Props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    infoForm.role = role;
+    infoForm.isAdmin = role == "admin";
   }, []);
 
   const { codeState, mssg, loading, fecthingData, resetAll } = useConsult(
