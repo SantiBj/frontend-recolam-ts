@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQueryParams } from "../../../hooks/useQueryParams";
 import { AddUrlDirectory } from "../../models/types.d.all";
 import { DataState } from "../../models/types.d.all";
@@ -24,6 +24,7 @@ export function ContentCardsCust({
   state,
   addUrlDirectory,
 }: Props) {
+  const [ qtTrips,setQtTrips ] = useState<number|null>(null);
   const { addValueUrl, getValueUrl } = useQueryParams();
 
   const initialPagination: number = useMemo(() => {
@@ -45,7 +46,10 @@ export function ContentCardsCust({
   }, [page]);
 
   const addCustomer: AddCustomer = (e) => {
-    const { name, value }: { name: string; value: string } = e.target;
+    const infoInput = e.target
+    console.log(Number(infoInput.dataset.quantity))
+    setQtTrips(Number(infoInput.dataset.quantity))
+    const { name, value }: { name: string; value: string } = infoInput;
     addValueCont(name, value);
     addValueUrl("/create-trip/customer", "page", page);
     addUrlDirectory("customer", `/create-trip/customer?page=${page}`);
@@ -59,12 +63,19 @@ export function ContentCardsCust({
   }
   return (
     <>
+      {
+         qtTrips !== null &&  <div className="text-white">
+         numero de viajes cliente : {qtTrips}
+       </div>
+      }
+
       <Grid>
         {dataConsult?.results.map((customer) => (
           <CardCustomer
-            key={customer.id}
+            key={customer.document}
             customer={customer}
             stateTrip={state}
+            quantityTrips={customer.quantityTrips}
             addCustomer={addCustomer}
           />
         ))}
