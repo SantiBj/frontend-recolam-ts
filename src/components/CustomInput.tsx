@@ -28,7 +28,7 @@ export function CustomInput({
         value={value}
         name={name}
       />
-      <div className="w-[290px] text-[14px] text-red-500">
+      <div className="text-[14px] text-red-500">
         {error !== null && error}
       </div>
     </div>

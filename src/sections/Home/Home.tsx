@@ -30,7 +30,7 @@ export function Home() {
           </div>
           <div className="flex flex-col md:flex-row gap-[30px] md:gap-0 md:justify-around items-center md:w-[80vw]">
             <iframe
-              className="md:ml-[-100px] md:w-[50%] max-w-[400px] aspect-video rounded-xl"
+              className="md:ml-[-100px] md:w-[40%] max-w-[300px] aspect-video rounded-xl"
               src="https://www.youtube.com/embed/lnI0Py1dPkg?si=jWUUk2KzJqQ3-PA_"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

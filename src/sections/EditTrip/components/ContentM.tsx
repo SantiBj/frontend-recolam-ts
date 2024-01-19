@@ -1,31 +1,26 @@
 import { useNavigate } from "react-router-dom";
-import { DataFormType, RoleEsType, RoleType } from "../models/types";
-import { useEffect } from "react";
-import { useConsult } from "../../../hooks/useConsult";
 import { Loading } from "../../../components/Loading";
-import { FaMapLocationDot } from "react-icons/fa6";
-import { BiCheckCircle, BiErrorAlt } from "react-icons/bi";
 import { BtnAcceptM } from "../../../components/BtnAccepM";
 import { BtnCancelM } from "../../../components/BtnCancelM";
+import { TripType } from "../../../Models";
+import { DataEditTrip } from "../models/types";
+import { useConsult } from "../../../hooks/useConsult";
+import { FaMapLocationDot } from "react-icons/fa6";
+import { BiCheckCircle,BiErrorAlt } from "react-icons/bi"
 
 interface Props {
-  role: RoleType;
-  roleInSpanish: RoleEsType;
-  infoForm: DataFormType;
-  closeModal: () => void;
+  closeModal: () => void
+  newTrip:DataEditTrip
+  oldTrip:TripType
 }
 
-export function ContentM({ role, roleInSpanish, infoForm, closeModal }: Props) {
+export function ContentM({ closeModal,newTrip,oldTrip }: Props) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    infoForm.isAdmin = role == "admin";
-  }, []);
-
-  const { codeState, mssg, loading, fecthingData, resetAll } = useConsult(
-    "register",
-    "POST",
-    infoForm
+  const { codeState, mssg, loading, fecthingData, resetAll } = useConsult<DataEditTrip,null>(
+    `trip-update/${oldTrip.id}`,
+    "PATCH",
+    newTrip
   );
 
   function error() {
@@ -36,18 +31,18 @@ export function ContentM({ role, roleInSpanish, infoForm, closeModal }: Props) {
   function success() {
     closeModal();
     resetAll();
-    navigate("/create/user");
+    navigate(`/trips/?date=${newTrip.scheduleDay}`);
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-[8px]">
+    <article className="flex flex-col justify-center items-center h-full gap-[8px]">
       {loading && <Loading />}
       {codeState == null && (
         <>
           <div className="text-green-600">
             <FaMapLocationDot size={45} />
           </div>
-          <div>¿ Desea crear el {roleInSpanish} ?</div>
+          <div>¿ Desea editar el viaje ?</div>
           <div className="flex gap-[20px] mt-[20px]">
             <BtnAcceptM action={fecthingData} />
             <BtnCancelM action={closeModal} />
@@ -59,7 +54,7 @@ export function ContentM({ role, roleInSpanish, infoForm, closeModal }: Props) {
           <div className="text-green-600">
             <BiCheckCircle size={45} />
           </div>
-          <div className="text-center">El {roleInSpanish} ha sido creado</div>{" "}
+          <div className="text-center">El viaje a sido editado con exito</div>{" "}
           <div className="flex gap-[20px] mt-[20px]">
             <BtnAcceptM action={success} />
           </div>
@@ -76,6 +71,6 @@ export function ContentM({ role, roleInSpanish, infoForm, closeModal }: Props) {
           </div>
         </>
       )}
-    </div>
+    </article>
   );
 }

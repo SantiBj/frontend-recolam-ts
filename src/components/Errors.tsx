@@ -6,7 +6,7 @@ export function Errors({ message }: { message: string|null }) {
             <div className="text-red-500">
                 <MdOutlineErrorOutline size={50} />
             </div>
-            <div className="text-center">{message}</div>
+            <div className="text-center w-[80%] mx-auto">{message}</div>
         </div>
     );
 }

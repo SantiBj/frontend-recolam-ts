@@ -1,0 +1,1 @@
+export type StateTruck = null | { truck:string }
