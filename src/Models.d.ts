@@ -33,6 +33,7 @@ export interface TripType {
   isComplete: boolean | null;
   isDisable: boolean | null;
   truck: string | null;
+  truckBusy?:boolean;
 }
 
 export interface Truck {

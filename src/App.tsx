@@ -19,6 +19,7 @@ import { DataUser } from "./sections/CreateUser/pages/DataUser";
 import { Trucks } from "./sections/StateTrucks/pages/Trucks";
 import { ListTrips } from "./sections/EditTrip/pages/ListTrips";
 import { EditTrip } from "./sections/EditTrip/pages/EditTrip";
+import { Trips } from "./sections/trips/pages/Trips";
 
 function App() {
   return (
@@ -70,7 +71,7 @@ function App() {
               <Route path="/trucks" element={<Trucks />} />
               <Route path="/trips" element={<ListTrips />} />
               <Route path="/trip-edit/:idTripEncript" element={<EditTrip />} />
-              
+              <Route path="/trips/new" element={<Trips/>}/>
             </Routes>
           </section>
           <Footer />

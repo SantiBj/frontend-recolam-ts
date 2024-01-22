@@ -25,7 +25,7 @@ export function OptionsTripsUI({ optionsTrips }:Props){
           <LinkTrip to={"/create-trip/scheduleDay"} text={"Crear Viaje"} />
           <LinkTrip to={"/assign-truck/list"} text={"Asignar Camion"}/>
           <LinkTrip to={"/trips-without-init/"} text={"Iniciar Viaje"} />
-          <LinkTrip to={"/trips"} text={"Editar Viaje"} />
+          <LinkTrip to={"/trips/new"} text={"Editar Viaje"} />
         </div>
         </>
     

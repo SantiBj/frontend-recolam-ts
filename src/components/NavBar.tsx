@@ -42,6 +42,7 @@ export function NavBar() {
             >
               <Link to={"/"}>Inicio</Link>
               <Link to={"/create/user"}>Crear usuario</Link>
+              <Link to={"/trips"}>Viajes</Link>
               <OptionsTrips />
               <Link to={"/trucks"}>Camiones</Link>
             </div>
