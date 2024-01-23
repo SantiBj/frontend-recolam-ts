@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect} from "react";
 import { SelectDate } from "../../../components/SelectDate";
 import { useConsult } from "../../../hooks/useConsult";
 import { DateType } from "../../../Models";
@@ -11,6 +11,10 @@ interface Props {
     setDate:(value:string)=>void
 }
 
+interface dates {
+    dates:Array<DateType>
+}
+
 export function InputDate({date,setDate}:Props){
 
     const {
@@ -19,12 +23,13 @@ export function InputDate({date,setDate}:Props){
         codeState,
         mssg,
         loading
-    } = useConsult<null,Array<DateType>>("dates-trips");
+    } = useConsult<null,dates>("dates-trips");
 
-    useState(()=>{
+    console.log(dataConsult?.dates)
+
+    useEffect(()=>{
         fecthingData()
     },[])
-
 
     if(loading){
         return <Loading/>
@@ -33,7 +38,7 @@ export function InputDate({date,setDate}:Props){
     }
     return (
         <SelectDate 
-            dates={dataConsult}
+            dates={dataConsult?.dates || null}
             handleChange={setDate}
             dateSelect={date}
         />

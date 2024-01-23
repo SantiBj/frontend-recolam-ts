@@ -13,14 +13,13 @@ export function SelectDate({ dates, handleChange, dateSelect }: Props) {
     handleChange(value);
   }
 
+
   return (
-    <div className="border-[2px] border-dotted p-[10px] rounded-lg w-[50%] max-w-[550px] min-w-[280px]">
       <select
-        className=" px-[15px] py-[10px] w-full rounded-lg"
+        className="shadow-sm shadow-white px-[15px] w-[150px] py-[10px] rounded-lg"
         onChange={change}
         value={dateSelect}
       >
-        <option value="">---</option>
         {dates !== null &&
           dates.map((date) => (
             <option key={date} value={date}>
@@ -28,6 +27,5 @@ export function SelectDate({ dates, handleChange, dateSelect }: Props) {
             </option>
           ))}
       </select>
-    </div>
   );
 }

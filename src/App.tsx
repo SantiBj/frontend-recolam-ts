@@ -27,7 +27,7 @@ function App() {
       <HashRouter>
         <main className="transition-all select-none bg-[url('https://acortar.link/lpmbDO')] bg-no-repeat  bg-center bg-cover">
           <NavBar />
-          <section className="mb-[100px] w-[85%] max-w-[1300px] mx-auto flex flex-col justify-center min-h-[100vh]">
+          <section className="mb-[100px] w-[85%] max-w-[1300px] mx-auto  min-h-[100vh]">
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Home />} />
