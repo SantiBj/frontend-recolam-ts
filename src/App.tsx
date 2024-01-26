@@ -20,6 +20,8 @@ import { Trucks } from "./sections/StateTrucks/pages/Trucks";
 import { ListTrips } from "./sections/EditTrip/pages/ListTrips";
 import { EditTrip } from "./sections/EditTrip/pages/EditTrip";
 import { Trips } from "./sections/trips/pages/Trips";
+import { TripsNotActive } from "./sections/trips/pages/TripsNotActive";
+
 
 function App() {
   return (
@@ -27,7 +29,7 @@ function App() {
       <HashRouter>
         <main className="transition-all select-none bg-[url('https://acortar.link/lpmbDO')] bg-no-repeat  bg-center bg-cover">
           <NavBar />
-          <section className="mb-[100px] w-[85%] max-w-[1300px] mx-auto  min-h-[100vh]">
+          <section className="transition-all mb-[100px] w-[85%] max-w-[1300px] mx-auto  min-h-[100vh]">
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Home />} />
@@ -41,6 +43,13 @@ function App() {
                 path="/create-trip/confirmation"
                 element={<Confirmation />}
               />
+              <Route path="/trips" element={<Trips/>}>
+                <Route path="not-actives" element={<TripsNotActive/>}/>
+                <Route path="actives"/>
+              </Route>
+
+
+
               <Route path="/trip-actives" element={<TripsActives />} />
               <Route
                 path="/trip-active-details/:trip"
@@ -71,7 +80,6 @@ function App() {
               <Route path="/trucks" element={<Trucks />} />
               <Route path="/trips" element={<ListTrips />} />
               <Route path="/trip-edit/:idTripEncript" element={<EditTrip />} />
-              <Route path="/trips/new" element={<Trips/>}/>
             </Routes>
           </section>
           <Footer />

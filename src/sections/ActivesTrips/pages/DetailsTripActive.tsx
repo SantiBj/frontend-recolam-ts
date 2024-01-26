@@ -62,7 +62,7 @@ export function DetailsTripActive() {
             </div>
             <div>
               <span className="font-bold">ID : </span>
-              {typeof dataConsult?.user == "object" && dataConsult?.user.id}
+              {typeof dataConsult?.user == "object" && dataConsult?.user.document}
             </div>
             <div>
               <span className="font-bold">Cliente : </span>
