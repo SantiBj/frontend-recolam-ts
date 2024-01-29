@@ -43,6 +43,11 @@ function App() {
                 path="/create-trip/confirmation"
                 element={<Confirmation />}
               />
+              <Route
+                path="/trip-details/:trip"
+                element={<DetailsTrip />}
+              />
+              <Route path="/trip-edit/:idTripEncript" element={<EditTrip />} />
               <Route path="/trips" element={<Trips/>}>
                 <Route path="not-actives" element={<TripsNotActive/>}/>
                 <Route path="actives"/>
@@ -64,22 +69,15 @@ function App() {
                 element={<TruckAvailable />}
               />
               <Route
-                path="/trip-without-details/:trip/"
-                element={<DetailsTrip />}
-              />
-              <Route
                 path="/trips-without-init/"
                 element={<TripsWithoutStart />}
               />
-              <Route
-                path="/trip-without-details/:trip/"
-                element={<DetailsTrip />}
-              />
+              
               <Route path="/create/user" element={<CreateUser />} />
               <Route path="/create/user/:role" element={<DataUser />} />
               <Route path="/trucks" element={<Trucks />} />
               <Route path="/trips" element={<ListTrips />} />
-              <Route path="/trip-edit/:idTripEncript" element={<EditTrip />} />
+              
             </Routes>
           </section>
           <Footer />

@@ -31,7 +31,8 @@ export interface TripType {
   initialDateCustomer: string | null;
   endDateCustomer: string | null;
   isComplete: boolean | null;
-  isDisable: boolean | null;
+  deleteDate: string | null;
+  cancelDate: string | null;
   truck: string | null;
   truckBusy?:boolean;
 }

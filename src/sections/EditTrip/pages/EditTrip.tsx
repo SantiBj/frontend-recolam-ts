@@ -45,7 +45,7 @@ export function EditTrip() {
       <section className="space-y-[30px]">
         <TittleMajor text="Viaje a editar" />
         <Title
-          to={`/trips/?date=${oldTrip?.scheduleDay}`}
+          to={`/trip-details/${idTripEncript}`}
           text="Detalles del viaje :"
         />
       </section>
