@@ -30,9 +30,8 @@ export interface TripType {
   endDateCompany: string | null;
   initialDateCustomer: string | null;
   endDateCustomer: string | null;
-  isComplete: boolean | null;
   deleteDate: string | null;
-  cancelDate: string | null;
+  canceledDate: string | null;
   truck: string | null;
   truckBusy?:boolean;
 }

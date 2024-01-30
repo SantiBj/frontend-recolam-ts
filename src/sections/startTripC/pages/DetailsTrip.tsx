@@ -127,7 +127,7 @@ export function DetailsTrip() {
               </button>
               <button
                 className={`${
-                  dataConsult?.initialDateCompany !== null &&
+                  dataConsult?.initialDateCompany !== null || dataConsult.canceledDate &&
                   "opacity-60 pointer-events-none"
                 } bg-red-500 transition-all hover:opacity-70 rounded-md p-[5px] w-full text-white font-semibold`}
                 onClick={()=>openM("CANCEL")}

@@ -93,7 +93,18 @@ export function ContentM({ closeModal, trip, action }: Props) {
           </div>
         </>
       )}
-      {codeState !== 200 && codeState !== null && (
+      {codeState == 204 && (
+        <>
+          <div className="text-green-600">
+            <BiCheckCircle size={45} />
+          </div>
+          <div className="text-center">{dataConsult.success}</div>{" "}
+          <div className="flex gap-[20px] mt-[20px]">
+            <BtnAcceptM action={success} />
+          </div>
+        </>
+      )}
+      {codeState !== 200 && codeState !== 204 && codeState !== null && (
         <>
           <div className="text-red-500">
             <BiErrorAlt size={45} />

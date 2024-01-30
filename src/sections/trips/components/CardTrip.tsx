@@ -11,12 +11,10 @@ interface Props {
 export function CardTrip({ trip }: Props) {
   const idTripEncript = useMemo(() => encrypt(trip.id), [trip.id]);
 
-  console.log(trip)
-
   return (
     <Link
       to={`/trip-details/${idTripEncript}`}
-      className={`transition-all gap-[10px] ${trip.cancelDate !== null && "opacity-80 bg-gray-500"} hover:scale-110 p-[20px] bg-white 
+      className={`transition-all gap-[10px] ${trip.canceledDate !== null && "opacity-80 bg-gray-500"} hover:scale-110 p-[20px] bg-white 
       rounded-md w-[200px] h-[200px] flex flex-col justify-center items-center`}
     
     >
